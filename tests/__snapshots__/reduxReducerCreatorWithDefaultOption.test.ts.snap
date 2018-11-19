@@ -1,0 +1,115 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test Reducer Creator with Default Option and defaultState Clear 1`] = `
+Object {
+  "data": Object {
+    "items": Array [],
+    "pageIndex": undefined,
+    "pageSize": undefined,
+    "totalItems": undefined,
+    "totalPage": undefined,
+  },
+  "loading": false,
+}
+`;
+
+exports[`Test Reducer Creator with Default Option and defaultState Get All 1`] = `
+Object {
+  "data": Object {
+    "items": Array [
+      Object {
+        "id": 1,
+        "name": "Duy",
+      },
+      Object {
+        "id": 2,
+        "name": "Hoang",
+      },
+    ],
+    "name": "Duy",
+  },
+  "loading": false,
+}
+`;
+
+exports[`Test Reducer Creator with Default Option and defaultState Get By ID 1`] = `
+Object {
+  "data": Object {
+    "items": Array [
+      Object {
+        "id": 1,
+        "name": "Steven",
+      },
+      Object {
+        "id": 3,
+        "name": "Bao",
+      },
+    ],
+  },
+  "loading": false,
+}
+`;
+
+exports[`Test Reducer Creator with Default Option and defaultState Remove By Id 1`] = `
+Object {
+  "data": Object {
+    "items": Array [],
+  },
+  "loading": false,
+}
+`;
+
+exports[`Test Reducer Creator with Default Option and empty State Clear 1`] = `
+Object {
+  "data": Object {
+    "items": Array [],
+    "pageIndex": undefined,
+    "pageSize": undefined,
+    "totalItems": undefined,
+    "totalPage": undefined,
+  },
+  "loading": false,
+}
+`;
+
+exports[`Test Reducer Creator with Default Option and empty State Get All 1`] = `
+Object {
+  "data": Object {
+    "items": Array [
+      Object {
+        "id": 1,
+        "name": "Duy",
+      },
+      Object {
+        "id": 2,
+        "name": "Hoang",
+      },
+    ],
+    "name": "Duy",
+  },
+  "loading": false,
+}
+`;
+
+exports[`Test Reducer Creator with Default Option and empty State Get By ID 1`] = `
+Object {
+  "data": Object {
+    "items": Array [
+      Object {
+        "id": 3,
+        "name": "Bao",
+      },
+    ],
+  },
+  "loading": false,
+}
+`;
+
+exports[`Test Reducer Creator with Default Option and empty State Remove By Id 1`] = `
+Object {
+  "data": Object {
+    "items": Array [],
+  },
+  "loading": false,
+}
+`;

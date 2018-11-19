@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test Customer Api Action Creator Create CustomerApi without clear action 1`] = `
+Object {
+  "archive": [Function],
+  "clear": [Function],
+  "clearDeleteItem": [Function],
+  "clearEditItem": [Function],
+  "clearNewItem": [Function],
+  "clearViewDetails": [Function],
+  "create": [Function],
+  "createOrUpdateDepartment": [Function],
+  "createOrUpdateNote": [Function],
+  "delete": [Function],
+  "deleteDeprtment": [Function],
+  "deleteItem": [Function],
+  "deleteNote": [Function],
+  "editItem": [Function],
+  "get": [Function],
+  "getById": [Function],
+  "name": "COREDATA/CUSTOMERSActions",
+  "newItem": [Function],
+  "removeItem": [Function],
+  "update": [Function],
+  "viewDetails": [Function],
+}
+`;
+
+exports[`Test Customer Api Action Creator Create CustomerApi without clear action 2`] = `"COREDATA/CUSTOMERS@GET@ASYNC_SUCCESS"`;
+
+exports[`Test Customer Api Action Creator Create CustomerApi without clear action 3`] = `"COREDATA/CUSTOMERS@GETBYID@ASYNC_SUCCESS"`;
+
+exports[`Test Customer Api Action Creator Create CustomerApi without clear action 4`] = `"COREDATA/CUSTOMERS@ARCHIVE@ASYNC_SUCCESS"`;
+
+exports[`Test Customer Api Action Creator Create CustomerApi without clear action 5`] = `"COREDATA/CUSTOMERS@DELETE@ASYNC_SUCCESS"`;
+
+exports[`Test Customer Api Action Creator Create CustomerApi without clear action 6`] = `"COREDATA/CUSTOMERS@CREATE@ASYNC_SUCCESS"`;
+
+exports[`Test Customer Api Action Creator Create CustomerApi without clear action 7`] = `"COREDATA/CUSTOMERS@UPDATE@ASYNC_SUCCESS"`;
+
+exports[`Test Customer Api Action Creator Create CustomerApi without clear action 8`] = `"COREDATA/CUSTOMERS@CLEAR@ASYNC_SUCCESS"`;
+
+exports[`Test Customer Api Action Creator Create CustomerApi without clear action 9`] = `"COREDATA/CUSTOMERS@REMOVEITEM@ASYNC_SUCCESS"`;
+
+exports[`Test Customer Api Action Creator Create CustomerApi without clear action 10`] = `"COREDATA/CUSTOMERS@VIEWDETAILS@ASYNC_SUCCESS"`;
+
+exports[`Test Customer Api Action Creator Create CustomerApi without clear action 11`] = `"COREDATA/CUSTOMERS@CLEARVIEWDETAILS@ASYNC_SUCCESS"`;
+
+exports[`Test Customer Api Action Creator Create CustomerApi without clear action 12`] = `"COREDATA/CUSTOMERS@EDITITEM@ASYNC_SUCCESS"`;
+
+exports[`Test Customer Api Action Creator Create CustomerApi without clear action 13`] = `"COREDATA/CUSTOMERS@CLEAREDITITEM@ASYNC_SUCCESS"`;
+
+exports[`Test Customer Api Action Creator Create CustomerApi without clear action 14`] = `"COREDATA/CUSTOMERS@NEWITEM@ASYNC_SUCCESS"`;
+
+exports[`Test Customer Api Action Creator Create CustomerApi without clear action 15`] = `"COREDATA/CUSTOMERS@CLEARNEWITEM@ASYNC_SUCCESS"`;
+
+exports[`Test Customer Api Action Creator Create CustomerApi without clear action 16`] = `"COREDATA/CUSTOMERS@DELETEITEM@ASYNC_SUCCESS"`;
+
+exports[`Test Customer Api Action Creator Create CustomerApi without clear action 17`] = `"COREDATA/CUSTOMERS@CLEARDELETEITEM@ASYNC_SUCCESS"`;
+
+exports[`Test Customer Api Action Creator Create CustomerApi without clear action 18`] = `"COREDATA/CUSTOMERS@CREATEORUPDATEDEPARTMENT@ASYNC_SUCCESS"`;
+
+exports[`Test Customer Api Action Creator Create CustomerApi without clear action 19`] = `"COREDATA/CUSTOMERS@DELETEDEPRTMENT@ASYNC_SUCCESS"`;
+
+exports[`Test Customer Api Action Creator Create CustomerApi without clear action 20`] = `"COREDATA/CUSTOMERS@CREATEORUPDATENOTE@ASYNC_SUCCESS"`;
+
+exports[`Test Customer Api Action Creator Create CustomerApi without clear action 21`] = `"COREDATA/CUSTOMERS@DELETENOTE@ASYNC_SUCCESS"`;
