@@ -333,3 +333,4 @@ ASALocalRun/
 **/dist
 **/lib
 **/**/__coverage__
+*.stackdump

@@ -1,12 +1,12 @@
 import { createActions } from '../src';
-import { CustomerApi } from '../src/api';
+import postApi from './api/postApi';
 
 describe('Test Customer Api Action Creator', () => {
-  test('Create CustomerApi without clear action', () => {
-    const result = createActions(CustomerApi);
+  test('Create postApi without clear action', () => {
+    const result = createActions(postApi);
 
     expect(result).toMatchSnapshot();
-    expect(Object.keys(result)).toMatchObject(Object.keys(CustomerApi));
+    expect(Object.keys(result)).toMatchObject(Object.keys(postApi));
 
     Object.keys(result).forEach(k => {
       if (typeof result[k] !== 'function') return;

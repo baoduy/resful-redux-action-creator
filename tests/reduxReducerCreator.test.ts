@@ -1,11 +1,11 @@
 import { createActions, createReducer } from '../src';
-import { CustomerApi } from '../src/api';
+import postApi from './api/postApi';
 
 describe('Test Reducer Creator', () => {
   test('Test Create Redux without dataGetter', () => {
     const dataGetter = jest.fn();
 
-    const actions = createActions(CustomerApi);
+    const actions = createActions(postApi);
 
     const reducer = () =>
       createReducer(actions, {
@@ -23,7 +23,7 @@ describe('Test Reducer Creator', () => {
     const defaultDataGetter = jest.fn();
     const dataGetter = jest.fn();
 
-    const actions = createActions(CustomerApi);
+    const actions = createActions(postApi);
     const reducer = createReducer(actions, {
       defaultData: {},
       dataGetters: {
@@ -41,7 +41,7 @@ describe('Test Reducer Creator', () => {
       if (typeof action !== 'function') return;
 
       const rs = reducer({}, action.success({ name: 'Duy' }));
-      // expect(rs).toMatchSnapshot();
+      expect(rs).toBeDefined();
     });
 
     expect(defaultDataGetter).toHaveBeenCalled();
@@ -52,7 +52,7 @@ describe('Test Reducer Creator', () => {
     const defaultDataGetter = (s, { payload }) => payload;
     const dataGetter = (s, { payload }) => payload;
 
-    const actions = createActions(CustomerApi);
+    const actions = createActions(postApi);
     const reducer = createReducer(actions, {
       defaultData: {},
       dataGetters: {

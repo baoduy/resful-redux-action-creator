@@ -76,7 +76,7 @@ export const mergeData = (
  */
 export const removeItems = <T extends Item>(
   original: Array<T>,
-  id: T | Array<T>,
+  id: Item | Array<Item>,
   idSelector?: IdSelectorFunc
 ) =>
   original
