@@ -1,5 +1,5 @@
-import { createActions } from '../../src/reduxHelpers';
-import { CustomerApi } from '../../src/api';
+import { createActions } from '../src';
+import { CustomerApi } from '../src/api';
 
 describe('Test Customer Api Action Creator', () => {
   test('Create CustomerApi without clear action', () => {

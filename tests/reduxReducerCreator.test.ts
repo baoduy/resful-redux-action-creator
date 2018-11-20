@@ -1,5 +1,5 @@
-import { createActions, createReducer } from '../../src/reduxHelpers';
-import { CustomerApi } from '../../src/api';
+import { createActions, createReducer } from '../src';
+import { CustomerApi } from '../src/api';
 
 describe('Test Reducer Creator', () => {
   test('Test Create Redux without dataGetter', () => {

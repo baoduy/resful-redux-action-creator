@@ -1,4 +1,4 @@
-import { mergeData, removeItems } from '../../src/reduxHelpers';
+import { mergeData, removeItems } from '../src';
 
 describe('Test MergeDataProps', () => {
   test('merge object with array prop', () => {

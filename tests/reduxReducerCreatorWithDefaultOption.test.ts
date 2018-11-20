@@ -1,4 +1,4 @@
-import { createActions, createReducer } from '../../src/reduxHelpers';
+import { createActions, createReducer } from '../src';
 import { CustomerApi } from '../../src/api';
 import getDefaultOption from '../../src/actions/DefaultConfigs/DefaultReducerConfig';
 
