@@ -1,0 +1,28 @@
+{
+  "presets": ["@babel/env", "@babel/preset-typescript"],
+  "plugins": [
+    "@babel/proposal-object-rest-spread",
+    "@babel/plugin-syntax-dynamic-import",
+    ["@babel/transform-runtime", { "useESModules": false }],
+    "@babel/plugin-syntax-import-meta",
+    [
+      "@babel/plugin-proposal-class-properties",
+      {
+        "loose": true
+      }
+    ],
+    "@babel/plugin-proposal-json-strings",
+    "@babel/plugin-transform-async-to-generator",
+    [
+      "module-resolver",
+      {
+        "root": ["./src"]
+      }
+    ]
+  ],
+  "env": {
+    "test": {
+      "plugins": ["@babel/transform-modules-commonjs"]
+    }
+  }
+}

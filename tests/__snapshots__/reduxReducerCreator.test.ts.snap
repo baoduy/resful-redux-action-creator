@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test Reducer Creator Test Create Redux Calling Func 1`] = `[Function]`;
+
+exports[`Test Reducer Creator Test Create Redux Calling Func 2`] = `
+Array [
+  [Function],
+  [Function],
+  [Function],
+  [Function],
+  [Function],
+  [Function],
+  [Function],
+]
+`;
+
+exports[`Test Reducer Creator Test Create Redux Real Reducer 1`] = `
+Object {
+  "data": Object {
+    "name": "Duy",
+  },
+  "loading": false,
+}
+`;
+
+exports[`Test Reducer Creator Test Create Redux Real Reducer 2`] = `
+Object {
+  "data": Object {
+    "name": "Duy",
+  },
+  "loading": false,
+}
+`;
+
+exports[`Test Reducer Creator Test Create Redux Real Reducer 3`] = `
+Object {
+  "data": Object {
+    "name": "Duy",
+  },
+  "loading": false,
+}
+`;
+
+exports[`Test Reducer Creator Test Create Redux Real Reducer 4`] = `
+Object {
+  "data": Object {
+    "name": "Duy",
+  },
+  "loading": false,
+}
+`;
+
+exports[`Test Reducer Creator Test Create Redux Real Reducer 5`] = `
+Object {
+  "data": Object {
+    "name": "Duy",
+  },
+  "loading": false,
+}
+`;
+
+exports[`Test Reducer Creator Test Create Redux Real Reducer 6`] = `
+Object {
+  "data": Object {
+    "name": "Duy",
+  },
+  "loading": false,
+}
+`;
+
+exports[`Test Reducer Creator Test Create Redux Real Reducer 7`] = `
+Object {
+  "data": Object {
+    "name": "Duy",
+  },
+  "loading": false,
+}
+`;

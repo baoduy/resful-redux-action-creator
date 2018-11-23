@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test Customer Api Action Creator Create postApi without clear action 1`] = `
+Object {
+  "create": [Function],
+  "delete": [Function],
+  "get": [Function],
+  "getById": [Function],
+  "getComments": [Function],
+  "getPostByUserId": [Function],
+  "name": "POSTSActions",
+  "update": [Function],
+}
+`;
+
+exports[`Test Customer Api Action Creator Create postApi without clear action 2`] = `"POSTS@GET@ASYNC_SUCCESS"`;
+
+exports[`Test Customer Api Action Creator Create postApi without clear action 3`] = `"POSTS@GETBYID@ASYNC_SUCCESS"`;
+
+exports[`Test Customer Api Action Creator Create postApi without clear action 4`] = `"POSTS@GETCOMMENTS@ASYNC_SUCCESS"`;
+
+exports[`Test Customer Api Action Creator Create postApi without clear action 5`] = `"POSTS@GETPOSTBYUSERID@ASYNC_SUCCESS"`;
+
+exports[`Test Customer Api Action Creator Create postApi without clear action 6`] = `"POSTS@CREATE@ASYNC_SUCCESS"`;
+
+exports[`Test Customer Api Action Creator Create postApi without clear action 7`] = `"POSTS@UPDATE@ASYNC_SUCCESS"`;
+
+exports[`Test Customer Api Action Creator Create postApi without clear action 8`] = `"POSTS@DELETE@ASYNC_SUCCESS"`;

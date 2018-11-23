@@ -1,0 +1,9 @@
+**/public
+**/tests
+**/config
+.vscode
+.prettierrc
+sandbox.config.json
+tsconfig.test.json
+tsconfig.json
+tslint.json
