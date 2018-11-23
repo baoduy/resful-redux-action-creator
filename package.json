@@ -1,8 +1,8 @@
 {
   "name": "restful-redux-action-creator",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "The helper library for restful to create async redux actions and reducers",
-  "main": "src/sindex.ts",
+  "main": "lib/index.js",
   "scripts": {
     "git-jest": "git submodule update --init --remote configs/jest",
     "clean": "rimraf -f -rmdir lib",

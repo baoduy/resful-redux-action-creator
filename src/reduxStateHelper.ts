@@ -82,5 +82,3 @@ export const mergeData = (
 
   return updateObjectProperties(lasteData, arrayObj);
 };
-
-export default mergeData;
