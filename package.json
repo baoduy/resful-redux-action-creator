@@ -10,7 +10,7 @@
     "build-js": "babel src --out-dir lib --extensions \".ts,.tsx\"",
     "build": "npm-run-all clean build-types build-js",
     "publish:dist": "npm publish lib",
-    "publish:whole": "npm publish .",
+    "publish:whole": "npm publish . --access public",
     "publish:all": "npm-run-all build publish:whole",
     "ci-publish": "ci-publish",
     "codecov": "codecov -t 48afb0d5-3dd1-4c5e-b761-23abbfdf9aba",
