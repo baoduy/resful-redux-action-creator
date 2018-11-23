@@ -1,6 +1,13 @@
 **/public
 **/tests
-**/config
+**/configs
+**/src
+**/.circleci
+**/docs
+
+.gitmodules
+.prettierrc
+.babelrc
 .vscode
 .prettierrc
 sandbox.config.json
