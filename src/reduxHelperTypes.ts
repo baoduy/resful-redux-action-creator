@@ -1,16 +1,10 @@
 import { AxiosPromise, AxiosResponse } from 'axios';
+
 import { AnyAction } from 'redux';
 
 export type DataGetterFunc = (state: any, action: any) => any;
 export type MetaGetterFunc = (api: Function) => any;
 export type DispatchableFunc<T> = (dispatch: any) => Promise<T>;
-
-export interface ApiFunc extends Function {
-  success: Function;
-  failure: Function;
-  progress: Function;
-  cancel: Function;
-}
 
 export type ApiActionType<T> =
   | AxiosPromise<Array<T>>
@@ -23,6 +17,13 @@ export type ApiActionType<T> =
 export interface ApiActions {
   name: string;
   [key: string]: Function | string | any;
+}
+
+export interface ApiFunc extends Function {
+  success: Function;
+  failure: Function;
+  progress: Function;
+  cancel: Function;
 }
 
 export interface ReducerFunc extends Function {

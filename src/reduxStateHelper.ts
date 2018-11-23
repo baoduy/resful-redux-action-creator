@@ -1,10 +1,10 @@
+import { IdSelectorFunc, MergeDataOptions } from './reduxHelperTypes';
 import {
-  upsertItemsById,
+  removeItemsById,
   updateItemsById,
   updateObjectProperties,
-  removeItemsById
+  upsertItemsById
 } from 'redux-toolbelt-immutable-helpers';
-import { MergeDataOptions, IdSelectorFunc } from './reduxHelperTypes';
 
 export interface Item {
   id: string | number;
@@ -24,6 +24,21 @@ const upsertItems = <T extends Item>(
   const final = upsertItemsById(original, latest, idSelector);
   return updateItemsById(final, latest, idSelector);
 };
+
+/**
+ * Remove items from array based on Id field
+ * @param original The original array
+ * @param id the list of id or just an Id will be remove from original array.
+ * @param idSelector default is item => item.id
+ */
+export const removeItems = <T extends Item>(
+  original: Array<T>,
+  id: Item | Array<Item>,
+  idSelector?: IdSelectorFunc
+) =>
+  original
+    ? removeItemsById(original, Array.isArray(id) ? id : [id], idSelector)
+    : [];
 
 /** The helper to mege data props from payload to redux state. The data props is defined by redix-toolbelt.
  * Array properties will be merge based on 'id' field. if don't have id file the provide the id selector.
@@ -68,36 +83,4 @@ export const mergeData = (
   return updateObjectProperties(lasteData, arrayObj);
 };
 
-/**
- * Remove items from array based on Id field
- * @param original The original array
- * @param id the list of id or just an Id will be remove from original array.
- * @param idSelector default is item => item.id
- */
-export const removeItems = <T extends Item>(
-  original: Array<T>,
-  id: Item | Array<Item>,
-  idSelector?: IdSelectorFunc
-) =>
-  original
-    ? removeItemsById(original, Array.isArray(id) ? id : [id], idSelector)
-    : [];
-
-// export const mergeState = (
-//   state: any,
-//   action: any,
-//   options: MergeStateOptions = {}
-// ) => {
-//   const { data, ...others } = action.payload;
-
-//   const newData = mergeData(
-//     state.data,
-//     options.actionDataPropSelector
-//       ? options.actionDataPropSelector(data)
-//       : data,
-//     options
-//   );
-//   const newState = updateObjectProperties(state, others);
-//   newState.data = newData;
-//   return newState;
-// };
+export default mergeData;

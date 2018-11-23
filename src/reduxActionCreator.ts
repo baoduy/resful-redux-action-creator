@@ -1,5 +1,6 @@
-import createReduxTool from './reduxTool';
 import { ActionOptions, ApiActions } from './reduxHelperTypes';
+
+import createReduxTool from './reduxTool';
 
 /** Api actions had been created by restful-action-creator*/
 export const createActions = <TActions extends ApiActions>(
