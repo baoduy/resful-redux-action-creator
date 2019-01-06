@@ -1,5 +1,7 @@
 import { createActions, createReducer } from '../src';
-import postApi from './api/postApi';
+import postApi, { Post } from './api/postApi';
+
+import { ReduxAction } from '../src/reduxHelperTypes';
 
 describe('Test Reducer Creator', () => {
   test('Test Create Redux without dataGetter', () => {
@@ -37,7 +39,7 @@ describe('Test Reducer Creator', () => {
     expect(reducer.actionName).toBe(actions.name);
 
     Object.keys(actions).forEach(k => {
-      const action = actions[k];
+      const action = <ReduxAction<Post>>actions[k];
       if (typeof action !== 'function') return;
 
       const rs = reducer({}, action.success({ name: 'Duy' }));

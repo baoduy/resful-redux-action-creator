@@ -1,33 +1,38 @@
+import { AnyAction, Dispatch, Reducer } from 'redux';
 import { AxiosPromise, AxiosResponse } from 'axios';
-
-import { AnyAction } from 'redux';
 
 export type DataGetterFunc = (state: any, action: any) => any;
 export type MetaGetterFunc = (api: Function) => any;
-export type DispatchableFunc<T> = (dispatch: any) => Promise<T>;
+export type DispatchableFunc<T> = (dispatch: Dispatch<AnyAction>) => Promise<T>;
 
-export type ApiActionType<T> =
-  | AxiosPromise<Array<T>>
-  | Promise<T>
-  | AnyAction
-  | DispatchableFunc<T>
-  | DispatchableFunc<AxiosResponse<T>>;
+type NamedObj = { name: string };
 
-/** API actions */
-export interface ApiActions {
-  name: string;
-  [key: string]: Function | string | any;
+type RestAction<T = any> = (
+  ...params: Array<any>
+) => AxiosPromise<Array<T>> | Promise<T>;
+
+export interface RestActionCollection extends NamedObj {
+  [key: string]: string | RestAction;
 }
 
-export interface ApiFunc extends Function {
-  success: Function;
-  failure: Function;
-  progress: Function;
-  cancel: Function;
+export interface ReduxAction<T = any> extends AnyAction {
+  (...params: Array<any>):
+    | DispatchableFunc<T>
+    | DispatchableFunc<AxiosResponse<T>>;
+  success: (...params: Array<any>) => RestAction<T>;
+  failure: (...params: Array<any>) => RestAction<T>;
+  progress: (...params: Array<any>) => RestAction<T>;
+  cancel: (...params: Array<any>) => RestAction<T>;
 }
 
-export interface ReducerFunc extends Function {
-  reducers: Array<Function>;
+export type ReduxActionCollection<TActions extends RestActionCollection> = {
+  [K in keyof TActions]: string | ReduxAction
+};
+
+export interface ReducerFunc<S = any, A extends ReduxAction = any>
+  extends Reducer<S, A> {
+  (state: S, action: A): S;
+  reducers: Array<ReduxAction>;
   actionName: string;
 }
 
@@ -36,6 +41,7 @@ interface dataGetterOption {
 }
 
 export type ReducerOptions = {
+  name?: string;
   meta?: MetaGetterFunc;
   defaultData: any;
   shouldSpread?: boolean;

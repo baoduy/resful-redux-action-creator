@@ -1,10 +1,12 @@
-import createReduxTool from './reduxTool';
 import {
-  ReducerOptions,
-  ApiActions,
+  DataGetterFunc,
   ReducerFunc,
-  DataGetterFunc
+  ReducerOptions,
+  ReduxActionCollection,
+  RestActionCollection
 } from './reduxHelperTypes';
+
+import createReduxTool from './reduxTool';
 import { mergeData } from './reduxStateHelper';
 
 const ignoreDataGetter: DataGetterFunc = s => s;
@@ -18,13 +20,15 @@ const defaultOptions: ReducerOptions = {
   defaultDataGetter: (s, a) => mergeData(s.data, a.payload.data || a.payload)
 };
 
-export const createReducer = <TActions extends ApiActions>(
-  actions: TActions,
+export const createReducer = <TActions extends RestActionCollection>(
+  actions: ReduxActionCollection<TActions>,
   options: ReducerOptions = defaultOptions
 ): ReducerFunc => {
   options = Object.assign({}, defaultOptions, options);
+  const name = (actions as any).name || options.name;
+  if (!name) throw 'name of ReduxActionCollection<TActions> is required';
 
-  const tool = createReduxTool(actions.name);
+  const tool = createReduxTool(name);
 
   let reducers = new Array<Function>();
 
@@ -50,7 +54,7 @@ export const createReducer = <TActions extends ApiActions>(
     if (!dataGetter)
       throw `There is no dataGetter found for ${key} in ${actions.name}`;
 
-    const reducer: Function = tool.createAsyncReducer(ac, {
+    const reducer = tool.createAsyncReducer(ac, {
       ...options,
       meta: options.meta ? options.meta(ac) : undefined,
       dataGetter: dataGetter
