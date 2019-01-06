@@ -3,7 +3,10 @@ import { AxiosPromise, AxiosResponse } from 'axios';
 
 export type DataGetterFunc = (state: any, action: any) => any;
 export type MetaGetterFunc = (api: Function) => any;
-export type DispatchableFunc<T> = (dispatch: Dispatch<AnyAction>) => Promise<T>;
+
+export type DispatchableFunc<T = any> = (
+  dispatch: Dispatch<AnyAction>
+) => Promise<T> | AxiosResponse<T>;
 
 export type NamedObj = { name: string };
 
@@ -16,9 +19,7 @@ export interface RestActionCollection extends NamedObj {
 }
 
 export interface ReduxAction<T = any> extends AnyAction {
-  (...params: Array<any>):
-    | DispatchableFunc<T>
-    | DispatchableFunc<AxiosResponse<T>>;
+  (...params: Array<any>): DispatchableFunc<T>;
   success: (...params: Array<any>) => RestAction<T>;
   failure: (...params: Array<any>) => RestAction<T>;
   progress: (...params: Array<any>) => RestAction<T>;
