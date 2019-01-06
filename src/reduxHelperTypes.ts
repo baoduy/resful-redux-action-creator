@@ -5,9 +5,9 @@ export type DataGetterFunc = (state: any, action: any) => any;
 export type MetaGetterFunc = (api: Function) => any;
 export type DispatchableFunc<T> = (dispatch: Dispatch<AnyAction>) => Promise<T>;
 
-type NamedObj = { name: string };
+export type NamedObj = { name: string };
 
-type RestAction<T = any> = (
+export type RestAction<T = any> = (
   ...params: Array<any>
 ) => AxiosPromise<Array<T>> | Promise<T>;
 
@@ -36,7 +36,7 @@ export interface ReducerFunc<S = any, A extends ReduxAction = any>
   actionName: string;
 }
 
-interface dataGetterOption {
+export interface dataGetterOption {
   [key: string]: DataGetterFunc | false;
 }
 
