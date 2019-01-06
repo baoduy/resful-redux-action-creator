@@ -12,7 +12,7 @@ export type RestAction<T = any> = (
 ) => AxiosPromise<T> | Promise<T>;
 
 export interface RestActionCollection extends NamedObj {
-  [key: string]: string | RestAction;
+  [key: string]: string | RestAction | undefined;
 }
 
 export interface ReduxAction<T = any> extends AnyAction {
@@ -26,7 +26,7 @@ export interface ReduxAction<T = any> extends AnyAction {
 }
 
 export type ReduxActionCollection<TActions extends RestActionCollection> = {
-  [K in keyof TActions]: string | ReduxAction
+  [K in keyof TActions]: string | ReduxAction | undefined
 };
 
 export interface ReducerFunc<S = any, A extends ReduxAction = any>
