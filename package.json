@@ -16,7 +16,7 @@
     "codecov": "codecov -t 48afb0d5-3dd1-4c5e-b761-23abbfdf9aba",
     "test-bundle": "bundlesize",
     "test": "jest --watch --coverage --config=configs/jest/ts.jest.json",
-    "test-ci": "jest --ci --coverage --config=configs/jest/ts.jest.json && npm run codecov",
+    "test-ci": "jest --ci --coverage --config=configs/jest/ts.jest.json && npm run codecov 8c6e0e84-b99e-42f5-becf-1f22aadbd62c",
     "update": "ncu -u -a"
   },
   "devDependencies": {
