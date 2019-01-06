@@ -9,7 +9,7 @@ export type NamedObj = { name: string };
 
 export type RestAction<T = any> = (
   ...params: Array<any>
-) => AxiosPromise<Array<T>> | Promise<T>;
+) => AxiosPromise<T> | Promise<T>;
 
 export interface RestActionCollection extends NamedObj {
   [key: string]: string | RestAction;
