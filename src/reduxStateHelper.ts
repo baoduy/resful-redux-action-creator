@@ -1,4 +1,10 @@
-import { IdSelectorFunc, MergeDataOptions } from './reduxHelperTypes';
+import {
+  DataItem,
+  IdSelectorFunc,
+  Item,
+  MergeDataOptions,
+  Spread
+} from './reduxHelperTypes';
 import {
   removeItemsById,
   updateItemsById,
@@ -6,9 +12,7 @@ import {
   upsertItemsById
 } from 'redux-toolbelt-immutable-helpers';
 
-export interface Item {
-  id: string | number;
-}
+import defaultIdSelector from 'redux-toolbelt-immutable-helpers/lib/defaultIdSelector';
 
 /**
  * Insert or Update array from array based on idSelector,
@@ -16,9 +20,9 @@ export interface Item {
  * @param latest The latest array contains list items which will be update or insert to the original array.
  * @param idSelector default is item => item.id
  */
-const upsertItems = <T extends Item>(
+const upsertItems = <T extends Item, S extends Item>(
   original: Array<T>,
-  latest: Array<T>,
+  latest: Array<S>,
   idSelector?: IdSelectorFunc
 ): Array<T> => {
   const final = upsertItemsById(original, latest, idSelector);
@@ -32,7 +36,7 @@ const upsertItems = <T extends Item>(
  * @param idSelector default is item => item.id
  */
 export const removeItems = <T extends Item>(
-  original: Array<T>,
+  original: Array<T> | undefined,
   id: Item | Array<Item>,
   idSelector?: IdSelectorFunc
 ) =>
@@ -43,16 +47,18 @@ export const removeItems = <T extends Item>(
 /** The helper to mege data props from payload to redux state. The data props is defined by redix-toolbelt.
  * Array properties will be merge based on 'id' field. if don't have id file the provide the id selector.
  */
-export const mergeData = (
-  original: any,
-  latest: any,
-  options: MergeDataOptions = { idSelector: i => i.id }
-) => {
-  if (!latest) return original;
-  if (!original) return latest;
+export const mergeData = <T extends Item, S extends Item>(
+  original?: DataItem<T>,
+  latest?: DataItem<S>,
+  options: MergeDataOptions = { idSelector: defaultIdSelector }
+): DataItem<Spread<T, S>> | undefined => {
+  if (!latest) return <DataItem<Spread<T, S>>>original;
+  if (!original) return <DataItem<Spread<T, S>>>latest;
 
-  if (Array.isArray(latest) || Array.isArray(original))
-    return upsertItems(original, latest, options.idSelector);
+  if (Array.isArray(original) && Array.isArray(latest))
+    return <DataItem<Spread<T, S>>>(
+      upsertItems(original, latest, options.idSelector)
+    );
 
   let arrayObj = {};
   let propsTobeUpdate = new Array<string>();

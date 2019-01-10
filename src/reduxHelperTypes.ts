@@ -14,8 +14,40 @@ export type RestAction<T = any> = (
   ...params: Array<any>
 ) => AxiosPromise<T> | Promise<T>;
 
-export interface RestActionCollection extends NamedObj {
-  [key: string]: string | RestAction | undefined;
+export interface Item {
+  id: string | number;
+  [key: string]: any;
+}
+
+export type MetaDataItem<T = any> = { items: Array<T>; [key: string]: any };
+export type DataItem<T = any> = Array<T> | MetaDataItem<T>;
+
+// Names of properties in T with types that include undefined
+type OptionalPropertyNames<T> = {
+  [K in keyof T]: undefined extends T[K] ? K : never
+}[keyof T];
+
+// Common properties from L and R with undefined in R[K] replaced by type in L[K]
+type SpreadProperties<L, R, K extends keyof L & keyof R> = {
+  [P in K]: L[P] | Exclude<R[P], undefined>
+};
+
+type Id<T> = { [K in keyof T]: T[K] }; // see note at bottom*
+
+// Type of { ...L, ...R }
+export type Spread<L, R> = Id<
+  // Properties in L that don't exist in R
+  Pick<L, Exclude<keyof L, keyof R>> &
+    // Properties in R with types that exclude undefined
+    Pick<R, Exclude<keyof R, OptionalPropertyNames<R>>> &
+    // Properties in R, with types that include undefined, that don't exist in L
+    Pick<R, Exclude<OptionalPropertyNames<R>, keyof L>> &
+    // Properties in R, with types that include undefined, that exist in L
+    SpreadProperties<L, R, OptionalPropertyNames<R> & keyof L>
+>;
+
+export interface RestActionCollection<T = any> extends NamedObj {
+  [key: string]: string | RestAction<T> | undefined;
 }
 
 export interface ReduxAction<T = any> extends AnyAction {

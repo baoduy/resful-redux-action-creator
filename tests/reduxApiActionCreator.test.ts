@@ -13,4 +13,17 @@ describe('Test Customer Api Action Creator', () => {
       expect(result[k].success.TYPE).toMatchSnapshot();
     });
   });
+
+  test('Create Api without name', () => {
+    const api = { ...postApi };
+    api.name = '';
+    expect(() => createActions(api)).toThrowError();
+  });
+
+  test('Create Api without option', () => {
+    const api = { ...postApi };
+    api.name = '';
+
+    expect(createActions(api, { prefix: 'A' })).toMatchSnapshot();
+  });
 });

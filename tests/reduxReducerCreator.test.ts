@@ -71,4 +71,25 @@ describe('Test Reducer Creator', () => {
       expect(rs).toMatchSnapshot();
     });
   });
+
+  test('Test Create Redux with Ignored Reducer', () => {
+    const defaultDataGetter = (s, { payload }) => payload;
+
+    const actions = createActions(postApi);
+    const reducer = createReducer(actions, {
+      defaultData: {},
+      dataGetters: {
+        [actions.get as any]: false
+      },
+      defaultDataGetter
+    });
+
+    Object.keys(actions).forEach(k => {
+      const action = actions[k];
+      if (typeof action !== 'function') return;
+
+      const rs = reducer({}, action.success({ name: 'Duy' }));
+      expect(rs).toMatchSnapshot();
+    });
+  });
 });
