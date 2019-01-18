@@ -1,7 +1,7 @@
 import { createActions, createReducer } from '../src';
 import postApi, { Post } from './api/postApi';
 
-import { ReduxAction } from '../src/reduxHelperTypes';
+import { ReduxAction } from '../src/reduxDefinition';
 
 describe('Test Reducer Creator', () => {
   test('Test Create Redux without dataGetter', () => {
@@ -51,8 +51,8 @@ describe('Test Reducer Creator', () => {
   });
 
   test('Test Create Redux Real Reducer', () => {
-    const defaultDataGetter = (s, { payload }) => payload;
-    const dataGetter = (s, { payload }) => payload;
+    const defaultDataGetter = (_s: any, { payload }: any) => payload;
+    const dataGetter = (_s: any, { payload }: any) => payload;
 
     const actions = createActions(postApi);
     const reducer = createReducer(actions, {

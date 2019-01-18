@@ -1,6 +1,6 @@
 import { mergeData, removeItems } from '../src';
 
-import { MetaDataItem } from '../src/reduxHelperTypes';
+import { MetaDataItem } from '../src/reduxDefinition';
 
 describe('Test MergeDataProps', () => {
   test('merge object with array prop', () => {

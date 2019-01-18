@@ -2,9 +2,8 @@ import {
   DataItem,
   IdSelectorFunc,
   Item,
-  MergeDataOptions,
-  Spread
-} from './reduxHelperTypes';
+  MergeDataOptions
+} from './reduxDefinition';
 import {
   removeItemsById,
   updateItemsById,
@@ -51,14 +50,12 @@ export const mergeData = <T extends Item, S extends Item>(
   original?: DataItem<T>,
   latest?: DataItem<S>,
   options: MergeDataOptions = { idSelector: defaultIdSelector }
-): DataItem<Spread<T, S>> | undefined => {
-  if (!latest) return <DataItem<Spread<T, S>>>original;
-  if (!original) return <DataItem<Spread<T, S>>>latest;
+): DataItem<T & S> | undefined => {
+  if (!latest) return original as any;
+  if (!original) return latest as any;
 
   if (Array.isArray(original) && Array.isArray(latest))
-    return <DataItem<Spread<T, S>>>(
-      upsertItems(original, latest, options.idSelector)
-    );
+    return upsertItems(original, latest, options.idSelector) as DataItem<T & S>;
 
   let arrayObj = {};
   let propsTobeUpdate = new Array<string>();

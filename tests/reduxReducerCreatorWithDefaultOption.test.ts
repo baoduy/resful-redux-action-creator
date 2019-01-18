@@ -1,7 +1,7 @@
 import { createActions, createReducer } from '../src';
 import postApi, { Post } from './api/postApi';
 
-import { ReduxAction } from '../src/reduxHelperTypes';
+import { ReduxAction } from '../src/reduxDefinition';
 
 describe('Test Reducer Creator with Default Option and defaultState', () => {
   const defaultState = { data: { items: [{ id: 1, name: 'Steven' }] } };

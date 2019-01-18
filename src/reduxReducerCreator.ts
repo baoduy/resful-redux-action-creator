@@ -4,7 +4,7 @@ import {
   ReducerOptions,
   ReduxActionCollection,
   RestActionCollection
-} from './reduxHelperTypes';
+} from './reduxDefinition';
 
 import createReduxTool from './reduxTool';
 import { mergeData } from './reduxStateHelper';

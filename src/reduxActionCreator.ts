@@ -3,7 +3,7 @@ import {
   ReduxAction,
   ReduxActionCollection,
   RestActionCollection
-} from './reduxHelperTypes';
+} from './reduxDefinition';
 
 import createReduxTool from './reduxTool';
 

@@ -32,17 +32,12 @@ type SpreadProperties<L, R, K extends keyof L & keyof R> = {
   [P in K]: L[P] | Exclude<R[P], undefined>
 };
 
-type Id<T> = { [K in keyof T]: T[K] }; // see note at bottom*
+type Props<T> = { [K in keyof T]: T[K] };
 
-// Type of { ...L, ...R }
-export type Spread<L, R> = Id<
-  // Properties in L that don't exist in R
+export type Spread<L, R> = Props<
   Pick<L, Exclude<keyof L, keyof R>> &
-    // Properties in R with types that exclude undefined
     Pick<R, Exclude<keyof R, OptionalPropertyNames<R>>> &
-    // Properties in R, with types that include undefined, that don't exist in L
     Pick<R, Exclude<OptionalPropertyNames<R>, keyof L>> &
-    // Properties in R, with types that include undefined, that exist in L
     SpreadProperties<L, R, OptionalPropertyNames<R> & keyof L>
 >;
 
@@ -93,14 +88,15 @@ export interface ActionOptions {
   prefix?: string;
 }
 
-export type IdSelectorFunc = (item: any) => any;
+export type IdSelectorFunc = <T>(item: T) => any;
 
-type ValueSelector = (
+export type ValueSelector = <T>(
   prop: string,
-  originalValue: any,
-  latestValue: any
+  originalValue: T,
+  latestValue: T
 ) => any;
-type DataPropSelector = (data: any) => any;
+
+export type DataPropSelector = <T>(data: T) => any;
 
 export interface MergeDataOptions {
   /** value transformer allows to convert, format and apply the calculation for final value from original value and latest value which can be identified via prop name.
@@ -112,6 +108,7 @@ export interface MergeDataOptions {
    */
   idSelector?: IdSelectorFunc;
 }
+
 export interface MergeStateOptions extends MergeDataOptions {
   /** provide a Data prop selector and transform for action.playload.data */
   actionDataPropSelector?: DataPropSelector;
