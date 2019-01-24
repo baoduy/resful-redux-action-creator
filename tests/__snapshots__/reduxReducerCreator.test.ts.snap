@@ -76,3 +76,64 @@ Object {
   "loading": false,
 }
 `;
+
+exports[`Test Reducer Creator Test Create Redux with Ignored Reducer 1`] = `
+Object {
+  "data": Object {},
+  "loading": false,
+}
+`;
+
+exports[`Test Reducer Creator Test Create Redux with Ignored Reducer 2`] = `
+Object {
+  "data": Object {
+    "name": "Duy",
+  },
+  "loading": false,
+}
+`;
+
+exports[`Test Reducer Creator Test Create Redux with Ignored Reducer 3`] = `
+Object {
+  "data": Object {
+    "name": "Duy",
+  },
+  "loading": false,
+}
+`;
+
+exports[`Test Reducer Creator Test Create Redux with Ignored Reducer 4`] = `
+Object {
+  "data": Object {
+    "name": "Duy",
+  },
+  "loading": false,
+}
+`;
+
+exports[`Test Reducer Creator Test Create Redux with Ignored Reducer 5`] = `
+Object {
+  "data": Object {
+    "name": "Duy",
+  },
+  "loading": false,
+}
+`;
+
+exports[`Test Reducer Creator Test Create Redux with Ignored Reducer 6`] = `
+Object {
+  "data": Object {
+    "name": "Duy",
+  },
+  "loading": false,
+}
+`;
+
+exports[`Test Reducer Creator Test Create Redux with Ignored Reducer 7`] = `
+Object {
+  "data": Object {
+    "name": "Duy",
+  },
+  "loading": false,
+}
+`;

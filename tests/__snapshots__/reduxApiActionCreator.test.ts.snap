@@ -1,5 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Test Customer Api Action Creator Create Api without option 1`] = `
+Object {
+  "create": [Function],
+  "delete": [Function],
+  "get": [Function],
+  "getById": [Function],
+  "getComments": [Function],
+  "getPostByUserId": [Function],
+  "name": "AActions",
+  "update": [Function],
+}
+`;
+
 exports[`Test Customer Api Action Creator Create postApi without clear action 1`] = `
 Object {
   "create": [Function],

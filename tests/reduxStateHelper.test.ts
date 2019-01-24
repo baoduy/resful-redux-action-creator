@@ -1,5 +1,7 @@
 import { mergeData, removeItems } from '../src';
 
+import { MetaDataItem } from '../src/reduxDefinition';
+
 describe('Test MergeDataProps', () => {
   test('merge object with array prop', () => {
     const original = {
@@ -1998,7 +2000,7 @@ describe('Test MergeDataProps', () => {
       ]
     };
 
-    const latest = {};
+    const latest: any = {};
 
     const result = mergeData(original, latest);
 
@@ -2385,7 +2387,7 @@ describe('Test MergeDataProps', () => {
       ]
     };
 
-    const result = mergeData(original, latest, {
+    const result = <MetaDataItem<any>>mergeData(original, latest, {
       valueSelector: (p: string, o: any, l: any) =>
         p === 'pageIndex' ? Math.max(o, l) : l
     });
@@ -2652,7 +2654,7 @@ describe('Test MergeDataProps', () => {
       ]
     };
 
-    const result = mergeData(original, latest, {
+    const result = <MetaDataItem<any>>mergeData(original, latest, {
       valueSelector: (p: string, o: any, l: any) =>
         p === 'pageIndex' ? Math.max(o, l) : l
     });
@@ -2683,7 +2685,24 @@ describe('Test MergeDataProps', () => {
     const latest = [{ id: 1, status: 'update' }];
 
     const result = mergeData(original, latest);
-    expect(result[0].status).toBe('update');
+
+    expect(result && result[0].status).toBe('update');
+  });
+
+  test('MergeData with null latest ', () => {
+    const original = [{ id: 1, name: 'Duy', status: 'new' }];
+    const latest = undefined;
+
+    const result = mergeData(original, latest);
+    expect(result).toBe(original);
+  });
+
+  test('MergeData with null original ', () => {
+    const original = undefined;
+    const latest = [{ id: 1, name: 'Duy', status: 'new' }];
+
+    const result = mergeData(original, latest);
+    expect(result).toBe(latest);
   });
 });
 
@@ -2698,5 +2717,11 @@ describe('Test RemoveData', () => {
     const defaultState = { data: { items: [{ id: 1, name: 'Steven' }] } };
     const rs = removeItems(defaultState.data.items, [{ id: 1 }]);
     expect(rs.length).toBe(0);
+  });
+
+  test('Remove item with undefined original', () => {
+    const defaultState = { data: { items: undefined } };
+    const rs = removeItems(defaultState.data.items, [{ id: 1 }]);
+    expect(rs).toMatchObject([]);
   });
 });

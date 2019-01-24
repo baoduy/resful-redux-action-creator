@@ -1,7 +1,7 @@
 import { createActions, createReducer } from '../src';
 import postApi, { Post } from './api/postApi';
 
-import { ReduxAction } from '../src/reduxHelperTypes';
+import { ReduxAction } from '../src/reduxDefinition';
 
 describe('Test Reducer Creator', () => {
   test('Test Create Redux without dataGetter', () => {
@@ -51,14 +51,35 @@ describe('Test Reducer Creator', () => {
   });
 
   test('Test Create Redux Real Reducer', () => {
-    const defaultDataGetter = (s, { payload }) => payload;
-    const dataGetter = (s, { payload }) => payload;
+    const defaultDataGetter = (_s: any, { payload }: any) => payload;
+    const dataGetter = (_s: any, { payload }: any) => payload;
 
     const actions = createActions(postApi);
     const reducer = createReducer(actions, {
       defaultData: {},
       dataGetters: {
         [actions.get as any]: dataGetter
+      },
+      defaultDataGetter
+    });
+
+    Object.keys(actions).forEach(k => {
+      const action = actions[k];
+      if (typeof action !== 'function') return;
+
+      const rs = reducer({}, action.success({ name: 'Duy' }));
+      expect(rs).toMatchSnapshot();
+    });
+  });
+
+  test('Test Create Redux with Ignored Reducer', () => {
+    const defaultDataGetter = (s, { payload }) => payload;
+
+    const actions = createActions(postApi);
+    const reducer = createReducer(actions, {
+      defaultData: {},
+      dataGetters: {
+        [actions.get as any]: false
       },
       defaultDataGetter
     });

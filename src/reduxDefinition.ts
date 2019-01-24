@@ -3,7 +3,10 @@ import { AxiosPromise, AxiosResponse } from 'axios';
 
 export type DataGetterFunc = (state: any, action: any) => any;
 export type MetaGetterFunc = (api: Function) => any;
-export type DispatchableFunc<T> = (dispatch: Dispatch<AnyAction>) => Promise<T>;
+
+export type DispatchableFunc<T = any> = (
+  dispatch: Dispatch<AnyAction>
+) => Promise<T> | AxiosResponse<T>;
 
 export type NamedObj = { name: string };
 
@@ -11,14 +14,39 @@ export type RestAction<T = any> = (
   ...params: Array<any>
 ) => AxiosPromise<T> | Promise<T>;
 
-export interface RestActionCollection extends NamedObj {
-  [key: string]: string | RestAction | undefined;
+export interface Item {
+  id: string | number;
+  [key: string]: any;
+}
+
+export type MetaDataItem<T = any> = { items: Array<T>; [key: string]: any };
+export type DataItem<T = any> = Array<T> | MetaDataItem<T>;
+
+// Names of properties in T with types that include undefined
+type OptionalPropertyNames<T> = {
+  [K in keyof T]: undefined extends T[K] ? K : never
+}[keyof T];
+
+// Common properties from L and R with undefined in R[K] replaced by type in L[K]
+type SpreadProperties<L, R, K extends keyof L & keyof R> = {
+  [P in K]: L[P] | Exclude<R[P], undefined>
+};
+
+type Props<T> = { [K in keyof T]: T[K] };
+
+export type Spread<L, R> = Props<
+  Pick<L, Exclude<keyof L, keyof R>> &
+    Pick<R, Exclude<keyof R, OptionalPropertyNames<R>>> &
+    Pick<R, Exclude<OptionalPropertyNames<R>, keyof L>> &
+    SpreadProperties<L, R, OptionalPropertyNames<R> & keyof L>
+>;
+
+export interface RestActionCollection<T = any> extends NamedObj {
+  [key: string]: string | RestAction<T> | undefined;
 }
 
 export interface ReduxAction<T = any> extends AnyAction {
-  (...params: Array<any>):
-    | DispatchableFunc<T>
-    | DispatchableFunc<AxiosResponse<T>>;
+  (...params: Array<any>): DispatchableFunc<T>;
   success: (...params: Array<any>) => RestAction<T>;
   failure: (...params: Array<any>) => RestAction<T>;
   progress: (...params: Array<any>) => RestAction<T>;
@@ -58,16 +86,22 @@ export type ReducerOptions = {
 
 export interface ActionOptions {
   prefix?: string;
+  /** Ignore the extrac parameter of redux belt {getState, dispatch, extraThunkArg}.
+   * The last parameter will be drop before pass to asyncFunc
+   */
+
+  ignoreExtraParam?: boolean;
 }
 
-export type IdSelectorFunc = (item: any) => any;
+export type IdSelectorFunc = <T>(item: T) => any;
 
-type ValueSelector = (
+export type ValueSelector = <T>(
   prop: string,
-  originalValue: any,
-  latestValue: any
+  originalValue: T,
+  latestValue: T
 ) => any;
-type DataPropSelector = (data: any) => any;
+
+export type DataPropSelector = <T>(data: T) => any;
 
 export interface MergeDataOptions {
   /** value transformer allows to convert, format and apply the calculation for final value from original value and latest value which can be identified via prop name.
@@ -79,6 +113,7 @@ export interface MergeDataOptions {
    */
   idSelector?: IdSelectorFunc;
 }
+
 export interface MergeStateOptions extends MergeDataOptions {
   /** provide a Data prop selector and transform for action.playload.data */
   actionDataPropSelector?: DataPropSelector;
