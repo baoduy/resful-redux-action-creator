@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test Reducer Creator Test Create Redux Real Reducer 1`] = `
+Object {
+  "data": Object {
+    "body": "quo et expedita modi cum officia vel magni
+doloribus qui repudiandae
+vero nisi sit
+quos veniam quod sed accusamus veritatis error",
+    "id": 10,
+    "title": "optio molestias id quia eum",
+    "userId": 1,
+  },
+  "loading": false,
+}
+`;

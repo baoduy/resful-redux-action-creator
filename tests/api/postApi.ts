@@ -1,7 +1,7 @@
 import { AxiosPromise } from 'axios';
 import RestClient from 'restful-action-creator';
 
-const client = RestClient('https://jsonplaceholder.typicode.com/');
+const client = RestClient('http://jsonplaceholder.typicode.com/');
 const postApi = client.create('posts');
 
 export interface Post {

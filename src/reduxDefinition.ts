@@ -86,6 +86,11 @@ export type ReducerOptions = {
 
 export interface ActionOptions {
   prefix?: string;
+  /** Ignore the extrac parameter of redux belt {getState, dispatch, extraThunkArg}.
+   * The last parameter will be drop before pass to asyncFunc
+   */
+
+  ignoreExtraParam?: boolean;
 }
 
 export type IdSelectorFunc = <T>(item: T) => any;

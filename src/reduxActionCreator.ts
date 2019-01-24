@@ -7,6 +7,12 @@ import {
 
 import createReduxTool from './reduxTool';
 
+const ignoreExtraParam = <TAsyncFunc extends Function>(
+  asyncFunc: TAsyncFunc
+) => (...args: Array<any>) => {
+  if (args.length > 0) args[args.length - 1] = undefined;
+  return asyncFunc(...args);
+};
 /** Api actions had been created by restful-action-creator*/
 export const createActions = <TActions extends RestActionCollection>(
   restActions: TActions,
@@ -24,7 +30,10 @@ export const createActions = <TActions extends RestActionCollection>(
     if (typeof action !== 'function') return;
 
     actions[key] = <ReduxAction<any>>(
-      tool.createAsyncAction(key.toUpperCase(), action)
+      tool.createAsyncAction(
+        key.toUpperCase(),
+        options.ignoreExtraParam ? ignoreExtraParam(action) : action
+      )
     );
   });
 
