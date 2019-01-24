@@ -54,7 +54,7 @@ export interface ReduxAction<T = any> extends AnyAction {
 }
 
 export type ReduxActionCollection<TActions extends RestActionCollection> = {
-  [K in keyof TActions]: string | ReduxAction | undefined
+  [K in keyof TActions]: string | ReduxAction<any> | undefined
 };
 
 export interface ReducerFunc<S = any, A extends ReduxAction = any>
