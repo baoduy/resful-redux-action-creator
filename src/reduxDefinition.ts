@@ -19,7 +19,7 @@ export interface Item {
   [key: string]: any;
 }
 
-export type MetaDataItem<T = any> = { items: Array<T>; [key: string]: any };
+export type MetaDataItem<T = any> = { items?: Array<T>; [key: string]: any };
 export type DataItem<T = any> = Array<T> | MetaDataItem<T>;
 
 // Names of properties in T with types that include undefined

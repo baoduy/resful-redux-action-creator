@@ -2387,12 +2387,12 @@ describe('Test MergeDataProps', () => {
       ]
     };
 
-    const result = <MetaDataItem<any>>mergeData(original, latest, {
+    const result: any = <MetaDataItem<any>>mergeData(original, latest, {
       valueSelector: (p: string, o: any, l: any) =>
         p === 'pageIndex' ? Math.max(o, l) : l
     });
 
-    expect(result.items.length).toBe(
+    expect(result.items && result.items.length).toBe(
       original.items.length + latest.items.length
     );
 
@@ -2659,17 +2659,19 @@ describe('Test MergeDataProps', () => {
         p === 'pageIndex' ? Math.max(o, l) : l
     });
 
-    expect(result.items.length).toBe(original.items.length + 1);
+    expect(result.items && result.items.length).toBe(original.items.length + 1);
     expect(result.pageSize).toBe(latest.pageSize);
     expect(result.totalItems).toBe(latest.totalItems);
     expect(result.totalPage).toBe(latest.totalPage);
     expect(result.pageIndex).toBe(
       Math.max(original.pageIndex, latest.pageIndex)
     );
-    expect(result.items.find(i => i.id === 1).companyName).toBe(
+    expect(result.items && result.items.find(i => i.id === 1).companyName).toBe(
       'Hoang Bao Duy'
     );
-    expect(result.items.find(i => i.id === 2).companyName).toBe('HBD');
+    expect(result.items && result.items.find(i => i.id === 2).companyName).toBe(
+      'HBD'
+    );
   });
 
   test('MergeData merge 2 Array', () => {
@@ -2703,6 +2705,17 @@ describe('Test MergeDataProps', () => {
 
     const result = mergeData(original, latest);
     expect(result).toBe(latest);
+  });
+
+  test('MergeData metdata ', () => {
+    const original = { items: [{ id: 1, code: '1', name: 'Duy' }] };
+
+    const meta = { editId: 2 };
+
+    const result = mergeData(original, meta);
+
+    expect((result as any).items).toMatchObject(original.items);
+    expect((result as any).editId).toBe(meta.editId);
   });
 });
 

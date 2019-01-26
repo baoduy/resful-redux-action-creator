@@ -50,7 +50,7 @@ export const mergeData = <T extends Item, S extends Item>(
   original?: DataItem<T>,
   latest?: DataItem<S>,
   options: MergeDataOptions = { idSelector: defaultIdSelector }
-): DataItem<T & S> | undefined => {
+) => {
   if (!latest) return original as any;
   if (!original) return latest as any;
 
@@ -83,5 +83,5 @@ export const mergeData = <T extends Item, S extends Item>(
     }
   );
 
-  return updateObjectProperties(lasteData, arrayObj);
+  return { ...lasteData, ...arrayObj };
 };
