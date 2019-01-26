@@ -1,5 +1,9 @@
 # Release Note
 
+## Version 1.0.5
+
+- Fix the mergeData issue.
+
 ## Version 1.0.4
 
 - Add `ignoreExtraParam` option which allow to ignore the extra patameter `{getState, dispatch, extraThunkArg}` passed from Redux tool belt. Refer [here](https://github.com/welldone-software/redux-toolbelt/tree/master/packages/redux-toolbelt-thunk#makethunkasyncactioncreatorbasename-asyncfn-argsmapper-options) for details

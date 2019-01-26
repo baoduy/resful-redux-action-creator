@@ -19,7 +19,7 @@ export interface Item {
   [key: string]: any;
 }
 
-export type MetaDataItem<T = any> = { items: Array<T>; [key: string]: any };
+export type MetaDataItem<T = any> = { items?: Array<T>; [key: string]: any };
 export type DataItem<T = any> = Array<T> | MetaDataItem<T>;
 
 // Names of properties in T with types that include undefined
@@ -54,7 +54,7 @@ export interface ReduxAction<T = any> extends AnyAction {
 }
 
 export type ReduxActionCollection<TActions extends RestActionCollection> = {
-  [K in keyof TActions]: string | ReduxAction | undefined
+  [K in keyof TActions]: string | ReduxAction<any> | undefined
 };
 
 export interface ReducerFunc<S = any, A extends ReduxAction = any>
