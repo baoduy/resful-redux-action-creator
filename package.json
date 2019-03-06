@@ -1,6 +1,6 @@
 {
   "name": "restful-redux-action-creator",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "The helper library for restful to create async redux actions and reducers",
   "main": "lib/index.js",
   "scripts": {

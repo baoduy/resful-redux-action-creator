@@ -8,9 +8,15 @@ export type DispatchableFunc<T = any> = (
   dispatch: Dispatch<AnyAction>
 ) => Promise<T> | AxiosResponse<T>;
 
-export type RestAction<T = any> = (
+type RestActionWithParams<T = any> = (
   ...params: Array<any>
 ) => AxiosPromise<T> | Promise<T>;
+
+type RestActionWithoutParams = () => AxiosPromise<void> | Promise<void>;
+
+export type RestAction<T = any> =
+  | RestActionWithParams<T>
+  | RestActionWithoutParams;
 
 export interface Item {
   id: string | number;
