@@ -1,6 +1,6 @@
 {
   "name": "restful-redux-action-creator",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "The helper library for restful to create async redux actions and reducers",
   "main": "lib/index.js",
   "scripts": {
@@ -13,10 +13,10 @@
     "publish:whole": "npm publish . --access public",
     "publish:all": "npm-run-all build publish:whole",
     "ci-publish": "ci-publish",
-    "codecov": "codecov -t 48afb0d5-3dd1-4c5e-b761-23abbfdf9aba",
+    "codecov": "codecov",
     "test-bundle": "bundlesize",
     "test": "jest --watch --coverage --config=configs/jest/ts.jest.json",
-    "test-ci": "jest --ci --coverage --config=configs/jest/ts.jest.json && npm run codecov 8c6e0e84-b99e-42f5-becf-1f22aadbd62c",
+    "test-ci": "jest --ci --coverage --config=configs/jest/ts.jest.json && npm run codecov",
     "update": "ncu -u -a"
   },
   "devDependencies": {
