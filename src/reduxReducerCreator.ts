@@ -25,7 +25,7 @@ export const createReducer = <TActions extends RestActionCollection>(
   options: ReducerOptions = defaultOptions
 ): ReducerFunc => {
   options = Object.assign({}, defaultOptions, options);
-  const name = (actions as any).name || options.name;
+  const name = actions.original.name || options.name;
   if (!name) throw 'name of ReduxActionCollection<TActions> is required';
 
   const tool = createReduxTool(name);

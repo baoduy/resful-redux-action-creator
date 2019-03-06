@@ -8,7 +8,16 @@ Object {
   "getById": [Function],
   "getComments": [Function],
   "getPostByUserId": [Function],
-  "name": "AActions",
+  "original": Object {
+    "create": [Function],
+    "delete": [Function],
+    "get": [Function],
+    "getById": [Function],
+    "getComments": [Function],
+    "getPostByUserId": [Function],
+    "name": "",
+    "update": [Function],
+  },
   "update": [Function],
 }
 `;
@@ -21,7 +30,16 @@ Object {
   "getById": [Function],
   "getComments": [Function],
   "getPostByUserId": [Function],
-  "name": "POSTSActions",
+  "original": Object {
+    "create": [Function],
+    "delete": [Function],
+    "get": [Function],
+    "getById": [Function],
+    "getComments": [Function],
+    "getPostByUserId": [Function],
+    "name": "POSTS",
+    "update": [Function],
+  },
   "update": [Function],
 }
 `;

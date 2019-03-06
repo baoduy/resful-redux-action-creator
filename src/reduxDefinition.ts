@@ -8,8 +8,6 @@ export type DispatchableFunc<T = any> = (
   dispatch: Dispatch<AnyAction>
 ) => Promise<T> | AxiosResponse<T>;
 
-export type NamedObj = { name: string };
-
 export type RestAction<T = any> = (
   ...params: Array<any>
 ) => AxiosPromise<T> | Promise<T>;
@@ -23,25 +21,26 @@ export type MetaDataItem<T = any> = { items?: Array<T>; [key: string]: any };
 export type DataItem<T = any> = Array<T> | MetaDataItem<T>;
 
 // Names of properties in T with types that include undefined
-type OptionalPropertyNames<T> = {
-  [K in keyof T]: undefined extends T[K] ? K : never
-}[keyof T];
+// type OptionalPropertyNames<T> = {
+//   [K in keyof T]: undefined extends T[K] ? K : never
+// }[keyof T];
 
 // Common properties from L and R with undefined in R[K] replaced by type in L[K]
-type SpreadProperties<L, R, K extends keyof L & keyof R> = {
-  [P in K]: L[P] | Exclude<R[P], undefined>
-};
+// type SpreadProperties<L, R, K extends keyof L & keyof R> = {
+//   [P in K]: L[P] | Exclude<R[P], undefined>
+// };
 
-type Props<T> = { [K in keyof T]: T[K] };
+// type Props<T> = { [K in keyof T]: T[K] };
 
-export type Spread<L, R> = Props<
-  Pick<L, Exclude<keyof L, keyof R>> &
-    Pick<R, Exclude<keyof R, OptionalPropertyNames<R>>> &
-    Pick<R, Exclude<OptionalPropertyNames<R>, keyof L>> &
-    SpreadProperties<L, R, OptionalPropertyNames<R> & keyof L>
->;
+// export type Spread<L, R> = Props<
+//   Pick<L, Exclude<keyof L, keyof R>> &
+//     Pick<R, Exclude<keyof R, OptionalPropertyNames<R>>> &
+//     Pick<R, Exclude<OptionalPropertyNames<R>, keyof L>> &
+//     SpreadProperties<L, R, OptionalPropertyNames<R> & keyof L>
+// >;
 
-export interface RestActionCollection<T = any> extends NamedObj {
+export interface RestActionCollection<T = any> {
+  name: string | undefined;
   [key: string]: string | RestAction<T> | undefined;
 }
 
@@ -53,8 +52,11 @@ export interface ReduxAction<T = any> extends AnyAction {
   cancel: (...params: Array<any>) => RestAction<T>;
 }
 
-export type ReduxActionCollection<TActions extends RestActionCollection> = {
-  [K in keyof TActions]: string | ReduxAction<any> | undefined
+export type ReduxActionCollection<
+  TActions extends RestActionCollection<any>
+> = { [K in keyof TActions]: ReduxAction<any> } & {
+  /** The original RestActionCollection */
+  original: TActions;
 };
 
 export interface ReducerFunc<S = any, A extends ReduxAction = any>

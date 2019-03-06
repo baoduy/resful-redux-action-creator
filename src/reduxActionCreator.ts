@@ -22,7 +22,7 @@ export const createActions = <TActions extends RestActionCollection>(
   if (!name) throw 'prefix and Api.name are empty.';
 
   const tool = createReduxTool(`${name.toUpperCase()}@`);
-  const actions = { name: `${name}Actions` };
+  const actions = { original: restActions };
 
   //Add action from Api.
   Object.keys(restActions).forEach(key => {
