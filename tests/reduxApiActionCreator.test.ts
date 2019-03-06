@@ -6,7 +6,6 @@ describe('Test Customer Api Action Creator', () => {
     const result = createActions(postApi);
 
     expect(result).toMatchSnapshot();
-    expect(Object.keys(result)).toMatchObject(Object.keys(postApi));
 
     Object.keys(result).forEach(k => {
       if (typeof result[k] !== 'function') return;
