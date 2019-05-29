@@ -4,7 +4,7 @@
 npm i restful-redux-action-creator
 ```
 
-![publishsize](https://badgen.net/packagephobia/install/restful-redux-action-creator)
+![publishsize](https://badgen.net/packagephobia/publish/restful-redux-action-creator)
 ![BundleSize](https://badgen.net/bundlephobia/min/restful-redux-action-creator)
 [![CircleCI](https://circleci.com/gh/baoduy/restful-redux-action-creator.svg?style=svg)](https://circleci.com/gh/baoduy/restful-redux-action-creator)
 [![codecov](https://codecov.io/gh/baoduy/restful-redux-action-creator/branch/develop/graph/badge.svg)](https://codecov.io/gh/baoduy/restful-redux-action-creator)
