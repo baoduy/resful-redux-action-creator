@@ -1,5 +1,7 @@
-import { AnyAction, Dispatch, Reducer } from 'redux';
+import { Action, AnyAction, Dispatch, Reducer } from 'redux';
 import { AxiosPromise, AxiosResponse } from 'axios';
+
+import { AsyncActionCreator } from 'redux-toolbelt';
 
 export type DataGetterFunc = (state: any, action: any) => any;
 export type MetaGetterFunc = (api: Function) => any;
@@ -19,7 +21,8 @@ export type RestAction<T = any> =
   | RestActionWithoutParams;
 
 export interface Item {
-  id: string | number;
+  id?: string | number;
+  name?: string | number;
   [key: string]: any;
 }
 
@@ -45,9 +48,9 @@ export type DataItem<T = any> = Array<T> | MetaDataItem<T>;
 //     SpreadProperties<L, R, OptionalPropertyNames<R> & keyof L>
 // >;
 
-export interface RestActionCollection<T = any> {
+export interface RestActionCollection<T extends Action = any> {
   name: string | undefined;
-  [key: string]: string | RestAction<T> | undefined;
+  [key: string]: string | AsyncActionCreator<T> | undefined;
 }
 
 export interface ReduxAction<T = any> extends AnyAction {
@@ -60,7 +63,7 @@ export interface ReduxAction<T = any> extends AnyAction {
 
 export type ReduxActionCollection<
   TActions extends RestActionCollection<any>
-> = { [K in keyof TActions]: ReduxAction<any> } & {
+> = { [K in keyof TActions]: AsyncActionCreator<any> } & {
   /** The original RestActionCollection */
   original: TActions;
 };
@@ -94,7 +97,7 @@ export type ReducerOptions = {
 
 export interface ActionOptions {
   prefix?: string;
-  /** Ignore the extrac parameter of redux belt {getState, dispatch, extraThunkArg}.
+  /** Ignore the extract parameter of redux belt {getState, dispatch, extraThunkArg}.
    * The last parameter will be drop before pass to asyncFunc
    */
 

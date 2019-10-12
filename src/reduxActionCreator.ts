@@ -1,6 +1,5 @@
 import {
   ActionOptions,
-  ReduxAction,
   ReduxActionCollection,
   RestActionCollection
 } from './reduxDefinition';
@@ -29,11 +28,10 @@ export const createActions = <TActions extends RestActionCollection>(
     const action = restActions[key];
     if (typeof action !== 'function') return;
 
-    actions[key] = <ReduxAction<any>>(
-      tool.createAsyncAction(
-        key.toUpperCase(),
-        options.ignoreExtraParam ? ignoreExtraParam(action) : action
-      )
+    actions[key] = tool.createAsyncAction(
+      key.toUpperCase(),
+      options.ignoreExtraParam ? ignoreExtraParam(action) : action,
+      {}
     );
   });
 

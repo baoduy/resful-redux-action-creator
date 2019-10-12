@@ -4,12 +4,14 @@ import { makeThunkAsyncActionCreator } from 'redux-toolbelt-thunk';
 
 //import makeActionCreator from 'redux-toolbelt/lib/makeActionCreator';
 //import makeReducer from 'redux-toolbelt/lib/makeReducer';
+const argsMapper = (payload: any, meta: any) => ({ payload, meta });
 
 /** The action creator for both async and non async action */
 export default (prefix: string) => ({
   /** Create Async action */
   createAsyncAction: makeThunkAsyncActionCreator.withDefaults({
-    prefix
+    prefix,
+    argsMapper
   }),
   /** Create non async action */
   // createAction: makeActionCreator.withDefaults({

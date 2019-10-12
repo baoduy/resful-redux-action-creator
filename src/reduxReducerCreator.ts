@@ -1,11 +1,11 @@
 import {
   DataGetterFunc,
-  ReducerFunc,
   ReducerOptions,
   ReduxActionCollection,
   RestActionCollection
 } from './reduxDefinition';
 
+import { Reducer } from 'redux';
 import createReduxTool from './reduxTool';
 import { mergeData } from './reduxStateHelper';
 
@@ -23,23 +23,23 @@ const defaultOptions: ReducerOptions = {
 export const createReducer = <TActions extends RestActionCollection>(
   actions: ReduxActionCollection<TActions>,
   options: ReducerOptions = defaultOptions
-): ReducerFunc => {
+) => {
   options = Object.assign({}, defaultOptions, options);
   const name = actions.original.name || options.name;
   if (!name) throw 'name of ReduxActionCollection<TActions> is required';
 
   const tool = createReduxTool(name);
 
-  let reducers = new Array<Function>();
+  const reducers = new Array<Reducer>();
 
   Object.keys(actions).forEach(key => {
     const ac = actions[key];
     if (typeof ac !== 'function') return;
 
-    var dataGetter: DataGetterFunc | undefined = undefined;
+    let dataGetter: DataGetterFunc | undefined = undefined;
 
     if (options.dataGetters) {
-      //If an Action in dataGettes is false => Do'nt update the Redux store value.
+      //If an Action in dataGettes is false => don't update the Redux store value.
       //The Reducer just return the store back.
       if (options.dataGetters[ac as any] === false)
         dataGetter = ignoreDataGetter;
@@ -56,7 +56,6 @@ export const createReducer = <TActions extends RestActionCollection>(
 
     const reducer = tool.createAsyncReducer(ac, {
       ...options,
-      meta: options.meta ? options.meta(ac) : undefined,
       dataGetter: dataGetter
     });
 
@@ -65,8 +64,8 @@ export const createReducer = <TActions extends RestActionCollection>(
   });
 
   const composeReducer = tool.createComposeReducer(...reducers);
-  composeReducer.actionName = actions.name;
-  composeReducer.reducers = reducers;
+  //(composeReducer as any).actionName = actions.name;
+  //(composeReducer as any).reducers = reducers;
 
   return composeReducer;
 };
